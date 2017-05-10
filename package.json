@@ -16,6 +16,7 @@
   "author": "Yoshua Wuyts <yoshuawuyts@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "bel": "^4.6.1",
     "brfs": "^1.4.3",
     "choo": "^5.4.0",
     "choo-log": "^6.1.2",
@@ -25,6 +26,11 @@
     "marked": "^0.3.6",
     "memdb": "^1.3.1",
     "mkdirp": "^0.5.1",
+    "nanobus": "^3.2.1",
+    "nanomorph": "^4.0.5",
+    "nanoraf": "^3.0.1",
+    "nanorouter": "^2.1.0",
+    "nanotiming": "^3.0.0",
     "pino": "^4.5.1",
     "sheetify": "^6.0.2",
     "tachyons": "^4.7.1"

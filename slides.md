@@ -8,6 +8,9 @@
 
 # ciao verona
 
+- I'm yosh
+- Data dad @ dat project
+
 ---
 
 # let's write 3 frameworks today
@@ -376,3 +379,84 @@ memdb.get('foo', function (err) {
 # frontend framework
 
 ---
+
+## Create html
+
+```js
+var html = require('bel')
+var el = html`
+  <main>
+  </main>
+`
+```
+
+---
+
+## State
+```js
+var state = {}
+```
+
+---
+
+## Event emitter
+
+```js
+var nanobus = require('nanobus')
+var emitter = nanobus('framework-emitter')
+
+emitter.on('foo', function () {
+  console.log('foo called')
+})
+
+emitter.emit('foo')
+```
+
+---
+
+## routing
+
+```js
+var nanorouter = require('nanorouter')
+```
+
+---
+
+## Dom diffing
+```js
+var nanomorph = require('nanomorph')
+var a = html`<div>beep</div>`
+var b = html`<div>boop</div>`
+nanomorph(a, b)
+```
+
+---
+
+## Tracing
+```js
+var nanotiming = require('nanotiming')
+var timing = nanotiming('framework')
+var uuid = timing.start('foo')
+// do stuff
+timing.end(uuid, 'foo')
+```
+
+---
+
+## Packages used
+- nanotiming
+- nanorouter
+- nanomorph
+- nanobus
+- bel
+
+---
+## Thank you
+## Thank you
+## Thank you
+## Thank you
+## Thank you
+## Thank you
+## Thank you
+## Thank you
+## Thank you
