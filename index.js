@@ -79,6 +79,7 @@ function splitter (arr) {
   function fmt (el) {
     var nodeName = el.nodeName.toLowerCase()
     if (nodeName === 'h1') el.setAttribute('class', 'f-5 ttu')
+    if (nodeName === 'h2') el.setAttribute('class', 'f1 ttu')
     if (nodeName === 'pre') el.setAttribute('class', 'f3 bg-dark-gray mw9 pa4 tl')
     if (nodeName === 'ul') el.setAttribute('class', 'f2 list b lh-copy')
     return el

@@ -1,6 +1,6 @@
+// Framework code
 var serverRouter = require('server-router')
 var envobj = require('envobj')
-var memdb = require('memdb')
 var http = require('http')
 var pino = require('pino')
 
@@ -31,9 +31,13 @@ Framework.prototype.listen = function (port) {
   })
 }
 
+// Application code
+var memdb = require('memdb')
+
 var db = memdb()
 var env = { PORT: 1337 }
 var app = Framework({ env: env })
+
 app.route('GET', '/', function (req, res, ctx) {
   ctx.log.info('GET /')
   db.get('value', function (err, value) {

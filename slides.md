@@ -2,6 +2,10 @@
 
 ---
 
+# AKA millenial JS
+
+---
+
 # ciao verona
 
 ---
@@ -10,6 +14,10 @@
 
 ---
 
+# what, seriously?
+# what, seriously?
+# what, seriously?
+# what, seriously?
 # what, seriously?
 
 ---
@@ -62,6 +70,15 @@
 - route requests
 - validate env vars
 - logging
+
+---
+
+# build system
+# build system
+# build system
+# build system
+# build system
+# build system
 
 ---
 
@@ -167,7 +184,23 @@ if (process.argv[2] === 'start') {
 
 ---
 
+## github.com/yoshuawuyts/bankai
+## github.com/yoshuawuyts/bankai
+## github.com/yoshuawuyts/bankai
+## github.com/yoshuawuyts/bankai
 # github.com/yoshuawuyts/bankai
+## github.com/yoshuawuyts/bankai
+
+---
+
+# Server time
+# Server time
+# Server time
+- Server time
+- Server time
+- Server time
+- Server time
+# Server time
 
 ---
 
@@ -289,7 +322,12 @@ Framework.prototype.listen = function (port) {
 ```js
 var memdb = require('memdb')
 var db = memdb()
+
 memdb.put('foo', 'bar', function (err) {
+  if (err) throw err
+})
+
+memdb.get('foo', function (err) {
   if (err) throw err
 })
 ```
@@ -306,3 +344,35 @@ memdb.put('foo', 'bar', function (err) {
 # what didn't we do?
 - consistent error handling
 - handle unknown routes
+
+---
+
+## github.com/shipharbor/merry
+## github.com/shipharbor/merry
+## github.com/shipharbor/merry
+- m
+- e
+- r
+- r
+- y
+- m
+- e
+- r
+- r
+- y
+
+---
+
+# frontend framework
+# frontend framework
+# frontend framework
+# frontend framework
+# frontend framework
+# frontend framework
+# frontend framework
+# frontend framework
+# frontend framework
+# frontend framework
+# frontend framework
+
+---
