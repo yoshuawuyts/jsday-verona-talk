@@ -46,12 +46,25 @@ Framework.prototype.start = function () {
 
 var app = Framework()
 app.route('/', function (state, emit) {
-  console.log('oi')
   return html`
     <main>
-      hello verona
+      <button onclick=${onclick}>
+        hello ${state.counter}
+      </button>
     </main>
   `
+
+  function onclick () {
+    emit('click')
+  }
+})
+
+app.use(function (state, emitter) {
+  state.counter = 0
+  emitter.on('click', function () {
+    state.counter += 1
+    emitter.emit('render')
+  })
 })
 var tree = app.start()
 document.body.appendChild(tree)

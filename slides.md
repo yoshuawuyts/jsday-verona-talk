@@ -443,6 +443,16 @@ timing.end(uuid, 'foo')
 
 ---
 
+## RAF
+```js
+var nanoraf = require('nanoraf')
+nanoraf(function () {
+  // do a thing
+})
+```
+
+---
+
 ## Packages used
 - nanotiming
 - nanorouter
