@@ -1,472 +1,280 @@
-# building a full stack
+# Browser Framework Fundamentals
 
 ---
 
-# AKA millenial JS
+# Or how I learned to love template strings
 
 ---
 
-# ciao verona
+# hallo Amsterdam
 
 - I'm yosh
-- Data dad @ dat project
+- Computer dad @ dat project
+- Niederlandisch
+- Used to run Nodeschool & Beerjs, yay
 
 ---
 
-# let's write 3 frameworks today
+# yay, frontend
 
 ---
 
-# what, seriously?
-# what, seriously?
-# what, seriously?
-# what, seriously?
-# what, seriously?
+# ok
+# ok
+# ok
+# fine
+# ok
+# ok
+# ok
 
 ---
 
-# yep
+# YAY, FRONTEND
+# YAY, FRONTEND
+# YAY, FRONTEND
+# YAY, FRONTEND
+# YAY, FRONTEND
 
 ---
 
-- build a backend framework from scratch
-- build a frontend framework from scratch
-- build a build system from scratch
-- build a backend framework from scratch
-- build a frontend framework from scratch
-- build a build system from scratch
-- build a backend framework from scratch
-- build a frontend framework from scratch
-- build a build system from scratch
-- build a backend framework from scratch
-- build a frontend framework from scratch
-- build a build system from scratch
+# yay frameworks
+- (and if we have time left: demos)
 
 ---
 
-# frontend app
+# choo
 
-- input field that updates some text
-- hit a button to save on server
-
----
-
-# frontend framework
-
-- unidirectional rendering
-- route views
-- cap at 60fps
-- event emitter
-- xhr
+- 4kb
+- like, 3 methods
+- full on MVC
+- does routing, logic, templates
+- rich ecosystem
 
 ---
 
-# backend app
-
-- validates a request
-- saves to a database
+# choo
+# DOM diffing with real DOM nodes
 
 ---
 
-# backend framework
+# whyyyy
 
-- route requests
-- validate env vars
-- logging
-
----
-
-# build system
-# build system
-# build system
-# build system
-# build system
-# build system
+- lowest level abstraction
+- teach folks how to DOM
+- A-OK performance
 
 ---
 
-# build framework
-
-- serve {html,css,js} over http
-- compile {html,css,js} and write to disk
-
----
-
-# HTTP
+# hello damskodam
 
 ```js
-var http = require('http')
-var server = http.createServer(function (req, res) {
-  res.end('hello world')
+var html = require('choo/html')
+var choo = require('choo')
+
+var app = choo()
+app.route('/', function (state, emit) {
+  return html`<body>hello yamsterdam</body>`
 })
-
-var port = 8080
-server.listen(port)
+app.mount('body')
 ```
 
 ---
 
-# create-html for html
+# template strings
+
+- DSL support inside JS
+- no more need for parser forks
+- compilation only for optimizations
+
+---
+
+# yamplate strings
+
+- HTML and SVG by `bel`
+- CSS by `sheetify`
+- GLSL by `glslify`
+
+---
+
+# yumplate strings
 
 ```js
-var createHtml = require('create-html')
-var html = createHtml({ script: 'bundle.js' })
-console.log(html)
-```
-
----
-
-# browserify for js
-
-```js
-var browserify = require('browserify')
-var b = browserify('app.js')
-
-var outStream = process.stdout
-b.bundle().pipe(outStream)
-```
-
----
-
-# sheetify for css
-
-```js
-var browserify = require('browserify')
-var b = browserify('app.js')
-b.transform('sheetify/transform')
-
-var outStream = process.stdout
-b.bundle().pipe(outStream)
-```
-
----
-
-# sheetify example
-
-```js
-var css = sheetify
-
-// global styles
-css`.my-class { color: blue }`
-
-// prefixed styles
-var style = css`:host { color: blue }`
-
-// styles from npm
-css('tachyons')
-```
-
----
-
-# CLI to bind things together
-
-```js
-if (process.argv[2] === 'start') {
-  // pipe things over http
-} else if (process.argv[2] === 'build') {
-  // pipe things to disk
-} else {
-  throw new Error('oops, we only support build & start')
-}
-```
-
----
-
-# packages used
-- browserify
-- sheetify
-- create-html
-
----
-
-# what didn't we do?
-- static render pages
-- extract css to separate file
-- optimize it all
-- serve assets
-
----
-
-## github.com/yoshuawuyts/bankai
-## github.com/yoshuawuyts/bankai
-## github.com/yoshuawuyts/bankai
-## github.com/yoshuawuyts/bankai
-# github.com/yoshuawuyts/bankai
-## github.com/yoshuawuyts/bankai
-
----
-
-# Server time
-# Server time
-# Server time
-- Server time
-- Server time
-- Server time
-- Server time
-# Server time
-
----
-
-# Server time
-
-- validates a request
-- saves to a database
-- logging
-- routing
-
----
-
-# framework usage
-
-```js
-var env = { PORT: 1337 }
-var app = Framework({ env: env })
-
-app.route('GET', '/:username', function (req, res, ctx) {
-  ctx.log.info('GET ' + ctx.params.username)
-  res.end('username is ' + ctx.params.username)
-})
-
-app.listen(app.env.PORT)
-```
-
----
-
-# framework framework
-
-```js
-function Framework (opts) {
-  if (!(this instanceof Framework)) return new Framework(opts)
-}
-
-Framework.prototype.start = function () {
-}
-```
-
----
-
-# env var validation
-
-```js
-var envobj = require('envobj')
-function Framework (opts) {
-  opts = opts || {}
-  this.env = opts.env || {}
-  envobj(this.env)
-}
-```
-
----
-
-# router
-
-```js
-var serverRouter = require('server-router')
-var router = serverRouter()
-router.route('GET', '/:name', function (req, res, ctx) {
-  res.end(ctx.params.name)
-})
-http.createServer(router.start()).listen()
-```
-
----
-
-# logging
-
-```js
-var pino = require('pino')
-var logger = pino('framework')
-var childLogger = logger.child({ uuid: 'some id' })
-childLogger.info('hello planet')
-```
-
----
-
-# framework logging
-
-```js
-function Framework () {
-  this.router = serverRouter()
-  this.log = pino()
-  this.uuid = 0
-}
-Framework.prototype.route = function (method, url, handler) {
-  var self = this
-  this.router.route(method, url, function (req, res, ctx) {
-    ctx.log.child({ uuid: self.uuid })
-    handler(req, res, ctx)
-  })
-}
-```
-
----
-
-# framework http
-
-```js
-var http = require('http')
-
-function Framework () {
-  this.router = serverRouter()
-  this.log = pino()
-}
-Framework.prototype.listen = function (port) {
-  var self = this
-  var server = http.createServer(this.router.start())
-  server.listen(port, function () {
-    self.log.info('server listening on port ' + port)
-  })
-}
-```
-
----
-
-# create a db
-```js
-var memdb = require('memdb')
-var db = memdb()
-
-memdb.put('foo', 'bar', function (err) {
-  if (err) throw err
-})
-
-memdb.get('foo', function (err) {
-  if (err) throw err
-})
-```
-
----
-
-# packages used
-- envobj
-- pino
-- server-router
-
----
-
-# what didn't we do?
-- consistent error handling
-- handle unknown routes
-
----
-
-## github.com/shipharbor/merry
-## github.com/shipharbor/merry
-## github.com/shipharbor/merry
-- m
-- e
-- r
-- r
-- y
-- m
-- e
-- r
-- r
-- y
-
----
-
-# frontend framework
-# frontend framework
-# frontend framework
-# frontend framework
-# frontend framework
-# frontend framework
-# frontend framework
-# frontend framework
-# frontend framework
-# frontend framework
-# frontend framework
-
----
-
-## Create html
-
-```js
+var css = require('sheetify')
 var html = require('bel')
-var el = html`
-  <main>
-  </main>
+
+var styles = css`
+  :host {
+    background-color: blue;
+    color: white;
+  }
 `
+
+var el = html`
+  <section class=${styles}>Howdy planet</section>
+`
+
+document.body.appendChild(el)
 ```
 
 ---
 
-## State
-```js
-var state = {}
-```
+# coooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooool
+# coooooool
+# cooooooooooool
+# coooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooool
+# coooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooool
+# coooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooool
 
 ---
 
-## Event emitter
+# ok, so what else
 
-```js
-var nanobus = require('nanobus')
-var emitter = nanobus('framework-emitter')
-
-emitter.on('foo', function () {
-  console.log('foo called')
-})
-
-emitter.emit('foo')
-```
+- render performance
+- user timings
+- trace logging
+- assertions
 
 ---
 
-## routing
-
-```js
-var nanorouter = require('nanorouter')
-```
+# [ rant about benchmarks for 45 seconds ]
 
 ---
 
-## Dom diffing
-```js
-var nanomorph = require('nanomorph')
-var a = html`<div>beep</div>`
-var b = html`<div>boop</div>`
-nanomorph(a, b)
-```
+# render performance act 1
 
 ---
 
-## Tracing
-```js
-var nanotiming = require('nanotiming')
-var timing = nanotiming('framework')
-var uuid = timing.start('foo')
-// do stuff
-timing.end(uuid, 'foo')
-```
+# request animation frame
+
+- run an action on the next frame
+- or current frame if no paints happened last frame
+- recursive call -> 60fps loop
+- best used as an upper cap for rendering
 
 ---
 
-## RAF
+# npm install nanoraf
+
 ```js
 var nanoraf = require('nanoraf')
-nanoraf(function () {
-  // do a thing
+
+var raf = nanoraf(function () {
+  console.log(val)
+})
+
+var val = 1 && raf()
+val = 2 && raf()
+val = 3 && raf()
+```
+
+---
+
+# render performance act 2
+
+---
+
+# use idle time
+- `window.requestIdleCallback()`
+- every frame is 16ms
+- perform tasks in spare time _after_ paint
+- should take `<50ms`
+- __don't perform ops on the DOM__
+
+---
+
+# npm install on-idle
+
+```js
+var onIdle = require('on-idle')
+onIdle(function () {
+  console.log('yay, doing stuff in idle time!')
 })
 ```
 
 ---
 
-## Packages used
-- nanotiming
-- nanorouter
-- nanomorph
-- nanobus
-- bel
+# render performance act 3
 
 ---
-## Thank you
-## Thank you
-## Thank you
-## Thank you
-## Thank you
-## Thank you
-## Thank you
-## Thank you
-## Thank you
+
+# the render loop (on chrome)
+- `microtask queue` resolves first
+- `setTimeout()` timers resolve second
+- `requestAnimationFrame()` resolves third
+- paints and reflows
+- `requestIdleCallback()` resolves last
+
+---
+
+# npm install nanotask
+
+```js
+var nanotask = require('nanotask')
+
+var queue = nanotask()
+
+queue(function () {
+  console.log('yay, hooking into mutation observers')
+})
+
+queue(function () {
+  console.log('but not promises b/c try...catch')
+})
+```
+
+---
+
+# trace logging
+# trace logging
+# trace logging
+
+- b/c measuring = knowing
+
+---
+
+# measuring things!
+```js
+// create unique names
+var startName = 'start-my-mark-' + window.performance.now()
+var endName = 'end-my-mark-' + window.performance.now()
+var measureName = 'my-mark-' + window.performance.now()
+
+// create marks around an operation
+window.performance.mark(startName)
+var i = 1000; while (--i) console.log(i)
+window.performance.mark(endName)
+
+window.requestIdleCallback(function () {
+  // measure the time between marks
+  window.performance.measure(measureName, startName, endName)
+  var measure = window.performance.getEntriesByName(measureName)[0]
+  console.log(measure.duration)
+
+  // clear all entries by name
+  window.performance.clearMarks(startName)
+  window.performance.clearMarks(endName)
+  window.performance.clearMeasures(measureName)
+})
+```
+
+---
+
+# npm install nanotiming
+
+```js
+var nanotiming = require('nanotiming')
+
+var timing = nanotiming('my-cool-timing')
+var i = 1000; while (--i) console.log(i)
+timing(function (measure, name) {
+  console.log(name + ' took ' + measure.duration + 'ms')
+})
+```
+
+---
+
+# assertions!
+- catch errors in runtime
+- turn assumptions into code
+- less time spent debugging
+- no compile step ⚡️
