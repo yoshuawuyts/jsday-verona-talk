@@ -132,6 +132,7 @@ document.body.appendChild(el)
 - render performance
 - user timings
 - trace logging
+- lifecycle detection
 - assertions
 
 ---
@@ -273,8 +274,87 @@ timing(function (measure, name) {
 
 ---
 
+# trace logging
+- block up networking as little as possible
+- make sure it's always sent
+- __always__
+
+---
+
+# sendBeacon
+
+```js
+var url = '/log'
+var data = { my: 'data' }
+var blob = new window.Blob([ JSON.stringify(data) ])
+var ok = window.navigator.sendBeacon(url, blob)
+console.log('data queued: ' + ok ? 'OK' : 'NOT OK')
+```
+
+---
+
 # assertions!
+
 - catch errors in runtime
 - turn assumptions into code
 - less time spent debugging
 - no compile step ⚡️
+
+---
+
+# require('assert')
+
+```js
+var assert = require('assert')
+
+function myFunction (a, b) {
+  assert.equal(typeof a, 'string', 'my-function: a should be type string')
+  assert.equal(typeof b, 'object', 'my-function: b should be type object')
+  assert.equal(typeof window, 'object', 'my-function: window should exist in the context')
+}
+```
+
+---
+
+# Fundamentals are down
+# What's next
+# What's next
+# What's next
+# What's next
+
+---
+
+# Universal components!
+
+- DOM diffing
+- use those cool fundamentals
+- magic support for all frameworks
+
+---
+
+# DOM diffing
+
+- create a new tree of DOM nodes
+- change an existing tree to look like the new tree
+- cool b/c it's just DOM nodes™
+
+---
+
+# DOM diffing
+
+```js
+var nanomorph = require('nanomorph')
+var html = require('bel')
+
+var a = html`<body>hi planet</body>`
+var b = html`<body>hi grampsterdam</body>`
+nanomorph(a, b)
+
+console.log(a.toString())
+```
+
+---
+
+# downsides of DOM diffing
+- stateful DOM nodes are hard
+- single DOM node populate two trees
