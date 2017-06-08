@@ -4,6 +4,8 @@
 
 # Or how I learned to love template strings
 
+- (no flashy animations, no worries)
+
 ---
 
 # hallo Amsterdam
@@ -11,7 +13,6 @@
 - I'm yosh
 - Computer dad @ dat project
 - Niederlandisch
-- Used to run Nodeschool & Beerjs, yay
 
 ---
 
@@ -32,7 +33,7 @@
 # YAY, FRONTEND
 # YAY, FRONTEND
 # YAY, FRONTEND
-# YAY, FRONTEND
+# YAY, "FRONTEND"
 # YAY, FRONTEND
 
 ---
@@ -65,7 +66,7 @@
 
 ---
 
-# hello damskodam
+# hello grampsterdam
 
 ```js
 var html = require('choo/html')
@@ -226,8 +227,6 @@ queue(function () {
 ---
 
 # trace logging
-# trace logging
-# trace logging
 
 - b/c measuring = knowing
 
@@ -288,6 +287,17 @@ var url = '/log'
 var data = { my: 'data' }
 var blob = new window.Blob([ JSON.stringify(data) ])
 var ok = window.navigator.sendBeacon(url, blob)
+console.log('data queued: ' + ok ? 'OK' : 'NOT OK')
+```
+
+---
+
+# nanobeacon
+
+```js
+var nanobeacon = require('nanobeacon')
+
+var ok = nanobeacon('/log', { my: 'data' })
 console.log('data queued: ' + ok ? 'OK' : 'NOT OK')
 ```
 
@@ -357,4 +367,93 @@ console.log(a.toString())
 
 # downsides of DOM diffing
 - stateful DOM nodes are hard
-- single DOM node populate two trees
+- single DOM node cannot populate two trees
+- no cheating
+
+---
+
+# Nanocomponent
+
+```js
+var Nanocomponent = require('nanocomponent')
+
+function MyComponent () {
+  Nanocomponent.call(this)
+}
+
+Mycomponent._render = function () {
+  console.log(this.state)
+}
+
+MyComponent.prototype = Object.create(Nanocomponent)
+```
+
+---
+
+# But that's no fun
+# No fun
+# No fun
+# No no fun
+# No fun
+
+---
+
+# Microcomponent
+
+```js
+var microcomponent = require('microcomponent')
+
+var component = microcomponent('MyComponent')
+component.on('render', function (props, state) {
+})
+```
+
+---
+
+# Microcomponent
+
+- DOM diffing
+- tracing
+- debug logging
+- can work with every framework ✨
+
+---
+
+# Nanocomponent-adapters
+
+```js
+var toReact = require('nanocomponent-adapters/react')
+var microcomponent = require('microcomponent')
+
+var component = microcomponent('MyComponent')
+component.on('render', function (props, state) {
+})
+
+var reactComponent = toReact(component)
+```
+
+---
+
+# Nanocomponent-adapters
+
+- lol, frameworks
+
+---
+
+# [ in case of spare time, insert demos here ]
+
+---
+
+# Thank you
+# Thank you
+# Thank you
+# Thank you
+# Thank you
+
+---
+
+## github.com/
+## yoshuawuyts/microcomponents-talk
+## " "
+## twitter.com/yoshuawuyts
+## github.com/yoshuawuyts
